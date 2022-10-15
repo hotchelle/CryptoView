@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">CryptoView</string>
-    <string name="price">Price</string>
-    <string name="name">Name</string>
-    <string name="symbol">Symbol</string>
+    <string name="app_name">newsapp</string>
+    <string name="api_key">4290f06b15b24214be9d0c9c33ba56d1</string>
 </resources>

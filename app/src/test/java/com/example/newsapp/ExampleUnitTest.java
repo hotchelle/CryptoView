@@ -1,4 +1,4 @@
-package com.example.cryptoview;
+package com.example.newsapp;
 
 import org.junit.Test;
 
