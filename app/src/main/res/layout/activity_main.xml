@@ -1,18 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_main"
-        android:layout_margin="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+    <Button
+        android:id="@+id/news"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:insetBottom="0dp"
+        android:text="News"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/fav"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:insetBottom="0dp"
+        android:text="Favs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/news" />
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:insetBottom="0dp"
+        android:text="Home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fav" />
+
+    <Button
+        android:id="@+id/profile"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:insetBottom="0dp"
+        android:text="Profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/home" />
+</androidx.constraintlayout.widget.ConstraintLayout>

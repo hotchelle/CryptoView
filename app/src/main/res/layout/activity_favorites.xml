@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".Favorites">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="409dp"
+        android:layout_height="101dp"
+        android:layout_marginBottom="633dp"
+        android:text="FAVORITES"
+        android:textAlignment="center"
+        android:textColor="#ED9C24"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/FavoriteList" />
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="404dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="572dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/FavoriteList"
+        android:layout_width="409dp"
+        android:layout_height="575dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/news"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:insetBottom="0dp"
+        android:text="News"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/fav"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:insetBottom="0dp"
+        android:text="Favs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/news" />
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:insetBottom="0dp"
+        android:text="Home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fav" />
+
+    <Button
+        android:id="@+id/profile"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:insetBottom="0dp"
+        android:text="Profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/home" />
+</androidx.constraintlayout.widget.ConstraintLayout>
