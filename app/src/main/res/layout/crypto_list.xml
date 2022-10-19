@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="4dp"
+    android:id= "@+id/CryptoRecycler"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="3dp"
+    app:cardBackgroundColor="@color/black_shade_2"
+    android:layout_height="wrap_content"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ListCurrency">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/currSymbol"
+            android:layout_margin="2dp"
+            android:padding="3dp"
+            android:text="Symbol "
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_toStartOf="@id/currPrice"
+            android:layout_toLeftOf="@+id/currPrice"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/currSymbol"
+            android:id="@+id/currName"
+            android:text="Name"
+            android:textColor="@color/white"
+            android:padding="3dp"
+            android:layout_margin="2dp"
+        />
+        <TextView
+            android:id="@+id/currPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="2dp"
+            android:padding="3dp"
+            android:text="123456"
+            android:textColor="@color/white"
+            />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
+
