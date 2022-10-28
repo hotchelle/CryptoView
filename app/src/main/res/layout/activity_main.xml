@@ -1,37 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black_shade_1"
-    tools:context=".MainActivity">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/black_shade_1"
+tools:context=".MainActivity">
+
 
     <EditText
         android:id="@+id/CryptoBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:focusable="auto"
         android:hint="Search Cryptocurrencies"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-         />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/CryptoRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="394dp"
+        android:layout_height="622dp"
         android:layout_below="@+id/CryptoBar"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CryptoBar"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
         tools:listitem="@layout/crypto_list" />
+
     <ProgressBar
         android:id="@+id/LoadingSymbol"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="gone"
-        />
+        tools:ignore="MissingConstraints" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/news"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:insetBottom="0dp"
+        android:text="News"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CryptoRecycler"
+        app:layout_constraintVertical_bias="1.0" />
 
+    <Button
+        android:id="@+id/fav"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:insetBottom="0dp"
+        android:text="Favs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/news"
+        app:layout_constraintTop_toBottomOf="@+id/CryptoRecycler"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:insetBottom="0dp"
+        android:text="Home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fav"
+        app:layout_constraintTop_toBottomOf="@+id/CryptoRecycler"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/profile"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:insetBottom="0dp"
+        android:text="Profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/home"
+        app:layout_constraintTop_toBottomOf="@+id/CryptoRecycler"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 

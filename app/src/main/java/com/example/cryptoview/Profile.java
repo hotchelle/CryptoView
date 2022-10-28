@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -92,169 +93,100 @@ public class Profile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         editName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText changeName = new EditText(v.getContext());
-                AlertDialog.Builder nameChangeDialog = new AlertDialog.Builder(v.getContext());
-                nameChangeDialog.setTitle("Change Name");
-                nameChangeDialog.setMessage("Enter Your Name");
-                nameChangeDialog.setView(changeName);
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(Profile.this);
+                alertDialog.setTitle("Change Name");
+                alertDialog.setMessage("Enter Your Name");
 
-                nameChangeDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String newName = changeName.getText().toString();
+                final EditText input = new EditText(Profile.this);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
+                input.setLayoutParams(lp);
+                alertDialog.setView(input);
 
-                        DocumentReference docRef = fstore.collection("users").document(userID);
-                        Map<String,Object> edited = new HashMap<>();
-                        edited.put("name", newName);
-                        edited.put("email", email);
-                        edited.put("phone", phone);
-                        edited.put("age", age);
-//                        docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void unused) {
-//                                Toast.makeText(Profile.this, "Success", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(Profile.this, "Failure", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-                    }
-                });
+                alertDialog.setPositiveButton("YES",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+//                                DocumentReference documentReference = fstore.collection("users").document(userID);
+                                Map<String,Object> user = new HashMap<>();
+                                user.put("name", "newName");
+                                user.put("email", "Hello world");
+                                user.put("phone", phone);
+                                user.put("age", age);
 
-                nameChangeDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(Profile.this, "Success", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(Profile.this, "Failure", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
 
-                    }
-                });
+                alertDialog.setNegativeButton("NO",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
 
-                nameChangeDialog.create().show();
+                alertDialog.show();
             }
+
         });
-        editEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText changeEmail = new EditText(v.getContext());
-                AlertDialog.Builder emailChangeDialog = new AlertDialog.Builder(v.getContext());
-                emailChangeDialog.setTitle("Change Email");
-                emailChangeDialog.setMessage("Enter Your Email");
-                emailChangeDialog.setView(changeEmail);
 
-                emailChangeDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String newEmail = changeEmail.getText().toString();
-//                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void unused) {
-//                                Toast.makeText(Profile.this, "Name Changed Successfully.", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(Profile.this, "Error" + e.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-                    }
-                });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                EditText changeName = new EditText(v.getContext());
+//                AlertDialog.Builder nameChangeDialog = new AlertDialog.Builder(v.getContext());
+//                nameChangeDialog.setTitle("Change Name");
+//                nameChangeDialog.setMessage("Enter Your Name");
+//                nameChangeDialog.setView(changeName);
+//
+//                nameChangeDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Toast.makeText(Profile.this, "It is a work", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
+//                nameChangeDialog.setNegativeButton("HELLO", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                });
+//
+//                nameChangeDialog.create().show();
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                DocumentReference documentReference = fstore.collection("users").document(userID);
+//                Map<String,Object> user = new HashMap<>();
+//                user.put("name", "newName");
+//                user.put("email", "Hello world");
+//                user.put("phone", phone);
+//                user.put("age", age);
+//
+//                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void unused) {
+//                        Toast.makeText(Profile.this, "Success", Toast.LENGTH_SHORT).show();
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(Profile.this, "Failure", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+//        });
 
-                emailChangeDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-                emailChangeDialog.create().show();
-            }
-        });
-        editPhone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText changePhone = new EditText(v.getContext());
-                AlertDialog.Builder phoneChangeDialog = new AlertDialog.Builder(v.getContext());
-                phoneChangeDialog.setTitle("Change Phone Number");
-                phoneChangeDialog.setMessage("Enter Your Phone Number");
-                phoneChangeDialog.setView(changePhone);
-
-                phoneChangeDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String newPhone = changePhone.getText().toString();
-//                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void unused) {
-//                                Toast.makeText(Profile.this, "Name Changed Successfully.", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(Profile.this, "Error" + e.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-                    }
-                });
-
-                phoneChangeDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-                phoneChangeDialog.create().show();
-            }
-        });
-        editAge.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText changeAge = new EditText(v.getContext());
-                AlertDialog.Builder ageChangeDialog = new AlertDialog.Builder(v.getContext());
-                ageChangeDialog.setTitle("Change Age");
-                ageChangeDialog.setMessage("Enter Your Age");
-                ageChangeDialog.setView(changeAge);
-
-                ageChangeDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String newAge = changeAge.getText().toString();
-//                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void unused) {
-//                                Toast.makeText(Profile.this, "Name Changed Successfully.", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(Profile.this, "Error" + e.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-                    }
-                });
-
-                ageChangeDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-                ageChangeDialog.create().show();
-            }
-        });
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Login.class);
-                startActivity(intent);
-//                fAuth = FirebaseAuth.getInstance();
-//                fAuth.signOut();
-            }
-        });
     }
 }

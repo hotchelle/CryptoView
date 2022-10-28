@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar loadingSymbol;
     private ArrayList<Crypto> cryptoArrayList;
     private CryptoListAdapter cryptoAdapter;
+    Button homePage, favPage, newsPage, profilePage;
     @Override
 
     // This method overrided to initialize all the required components with inputs from all the crypto objects
@@ -52,6 +55,33 @@ public class MainActivity extends AppCompatActivity {
         cryptoList.setAdapter(cryptoAdapter);
 
         getCryptoData();
+
+        homePage = findViewById(R.id.home);
+        favPage = findViewById(R.id.fav);
+        newsPage = findViewById(R.id.news);
+        profilePage = findViewById(R.id.profile);
+
+        favPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Favorites.class);
+                startActivity(intent);
+            }
+        });
+        newsPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), News.class);
+                startActivity(intent);
+            }
+        });
+        profilePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Profile.class);
+                startActivity(intent);
+            }
+        });
 
         cryptoBar.addTextChangedListener(new TextWatcher() {
             @Override
