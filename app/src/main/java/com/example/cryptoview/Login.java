@@ -47,7 +47,6 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 Intent loginIntent = new Intent(getApplicationContext(), Register.class);
                 startActivity(loginIntent);
-                finish();
             }
         });
 
@@ -83,6 +82,8 @@ public class Login extends AppCompatActivity {
                             mEmail.setText("");
                             mPassword.setText("");
                             startActivity(intent);
+                            progressBar.setVisibility(View.GONE);
+
                         }else{
                             Toast.makeText(Login.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);

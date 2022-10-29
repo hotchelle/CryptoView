@@ -42,6 +42,7 @@ public class News extends AppCompatActivity implements SelectListener {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Favorites.class);
                 startActivity(intent);
+                finish();
             }
         });
         homePage.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +50,7 @@ public class News extends AppCompatActivity implements SelectListener {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         profilePage.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +58,7 @@ public class News extends AppCompatActivity implements SelectListener {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Profile.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

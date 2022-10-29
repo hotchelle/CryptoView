@@ -28,6 +28,7 @@ public class Favorites extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         newsPage.setOnClickListener(new View.OnClickListener() {
@@ -35,6 +36,7 @@ public class Favorites extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), News.class);
                 startActivity(intent);
+                finish();
             }
         });
         profilePage.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +44,7 @@ public class Favorites extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Profile.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

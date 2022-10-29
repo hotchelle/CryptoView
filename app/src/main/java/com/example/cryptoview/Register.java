@@ -134,6 +134,8 @@ public class Register extends AppCompatActivity {
                             mConfirmPassword.setText("");
                             Intent intent = new Intent(getApplicationContext(), Profile.class);
                             startActivity(intent);
+                            progressBar.setVisibility(View.GONE);
+                            finish();
 
                         }else{
                             Toast.makeText(Register.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
