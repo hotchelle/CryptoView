@@ -36,7 +36,6 @@ public class Profile extends AppCompatActivity {
     FirebaseFirestore fstore;
     String userID;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +76,7 @@ public class Profile extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         favPage.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +84,7 @@ public class Profile extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Favorites.class);
                 startActivity(intent);
+                finish();
             }
         });
         newsPage.setOnClickListener(new View.OnClickListener() {
@@ -91,102 +92,44 @@ public class Profile extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), News.class);
                 startActivity(intent);
+                finish();
             }
         });
 
         editName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(Profile.this);
-                alertDialog.setTitle("Change Name");
-                alertDialog.setMessage("Enter Your Name");
-
-                final EditText input = new EditText(Profile.this);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT);
-                input.setLayoutParams(lp);
-                alertDialog.setView(input);
-
-                alertDialog.setPositiveButton("YES",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-//                                DocumentReference documentReference = fstore.collection("users").document(userID);
-                                Map<String,Object> user = new HashMap<>();
-                                user.put("name", "newName");
-                                user.put("email", "Hello world");
-                                user.put("phone", phone);
-                                user.put("age", age);
-
-                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        Toast.makeText(Profile.this, "Success", Toast.LENGTH_SHORT).show();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(Profile.this, "Failure", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-                        });
-
-                alertDialog.setNegativeButton("NO",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-
-                alertDialog.show();
+                Intent intent = new Intent(getApplicationContext(), EditName.class);
+                startActivity(intent);
             }
 
         });
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                EditText changeName = new EditText(v.getContext());
-//                AlertDialog.Builder nameChangeDialog = new AlertDialog.Builder(v.getContext());
-//                nameChangeDialog.setTitle("Change Name");
-//                nameChangeDialog.setMessage("Enter Your Name");
-//                nameChangeDialog.setView(changeName);
-//
-//                nameChangeDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        Toast.makeText(Profile.this, "It is a work", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//
-//                nameChangeDialog.setNegativeButton("HELLO", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//
-//                    }
-//                });
-//
-//                nameChangeDialog.create().show();
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                DocumentReference documentReference = fstore.collection("users").document(userID);
-//                Map<String,Object> user = new HashMap<>();
-//                user.put("name", "newName");
-//                user.put("email", "Hello world");
-//                user.put("phone", phone);
-//                user.put("age", age);
-//
-//                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void unused) {
-//                        Toast.makeText(Profile.this, "Success", Toast.LENGTH_SHORT).show();
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(Profile.this, "Failure", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//            }
-//        });
-
+        editEmail.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), EditEmail.class);
+                startActivity(intent);
+            }
+        });
+        editAge.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), EditAge.class);
+                startActivity(intent);
+            }
+        });
+        editPhone.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), EditPhone.class);
+                startActivity(intent);
+            }
+        });
+        logoutBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                finish();
+            }
+        });
     }
 }

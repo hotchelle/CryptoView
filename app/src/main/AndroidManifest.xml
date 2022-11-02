@@ -26,6 +26,22 @@
             android:exported="false">
         </activity>
         <activity
+            android:name=".EditEmail"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".EditName"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".EditAge"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".EditPhone"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="false">
         </activity>

@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Favorites.class);
                 startActivity(intent);
+                finish();
             }
         });
         newsPage.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), News.class);
                 startActivity(intent);
+                finish();
             }
         });
         profilePage.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Profile.class);
                 startActivity(intent);
+                finish();
             }
         });
 
