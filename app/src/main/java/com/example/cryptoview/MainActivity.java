@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView cryptoList;
     private ProgressBar loadingSymbol;
     private ArrayList<Crypto> cryptoArrayList;
+    ArrayList<Crypto> favoriteCrypto;
     private CryptoListAdapter cryptoAdapter;
     Button homePage, favPage, newsPage, profilePage;
     @Override
@@ -50,16 +52,19 @@ public class MainActivity extends AppCompatActivity {
         cryptoList = findViewById(R.id.CryptoRecycler);
         loadingSymbol = findViewById(R.id.LoadingSymbol);
         cryptoArrayList = new ArrayList<>();
-        cryptoAdapter = new CryptoListAdapter(cryptoArrayList,this);
+        favoriteCrypto = new ArrayList<>();
+        cryptoAdapter = new CryptoListAdapter(cryptoArrayList,this,favoriteCrypto);
         cryptoList.setLayoutManager(new LinearLayoutManager(this));
         cryptoList.setAdapter(cryptoAdapter);
 
         getCryptoData();
+        //TODO: Call favorites data from firebase
 
         homePage = findViewById(R.id.home);
         favPage = findViewById(R.id.fav);
         newsPage = findViewById(R.id.news);
         profilePage = findViewById(R.id.profile);
+
 
         favPage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,9 +122,11 @@ public class MainActivity extends AppCompatActivity {
         if(filteredList.isEmpty()){
             Toast.makeText(this, "No crypto currencies were found", Toast.LENGTH_SHORT).show();
         } else{
-             CryptoListAdapter.filterList(filteredList);
+            CryptoListAdapter.filterList(filteredList);
         }
     }
+
+    //Build favorites
 
     // This method fetches the data from cryptocapmarket api
     // and stores this data as a JSON object and parse this string to obtain

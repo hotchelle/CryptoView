@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,10 +19,11 @@ public class CryptoListAdapter extends RecyclerView.Adapter<CryptoListAdapter.Vi
     private static final DecimalFormat cdf = new DecimalFormat( "#.##");
     private static ArrayList<Crypto> cryptoArrayList;
     private final Context context;
+    private ArrayList<Crypto> favoriteCrypto;
 
 //This is a constructor that takes in an array list of all the crypto currencies
     // and a context to wrap around the program
-    public CryptoListAdapter(ArrayList<Crypto> cryptoArrayList, Context context) {
+    public CryptoListAdapter(ArrayList<Crypto> cryptoArrayList, Context context, ArrayList<Crypto> favoriteCrypto) {
         CryptoListAdapter.cryptoArrayList = cryptoArrayList;
         this.context = context;
     }
@@ -60,11 +62,37 @@ public class CryptoListAdapter extends RecyclerView.Adapter<CryptoListAdapter.Vi
         private final TextView currencySymbol;
         private final TextView currencyName;
         private final TextView currencyPrice;
+        private final ImageButton imageButton;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             currencySymbol = itemView.findViewById(R.id.currSymbol);
             currencyName = itemView.findViewById(R.id.currName);
             currencyPrice = itemView.findViewById(R.id.currPrice);
+            imageButton = itemView.findViewById(R.id.fvrt_f2_item);
+
+            // For loop to check
+
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+
+                    System.out.println(position);
+
+                    if(!cryptoArrayList.get(position).isStatus())
+                    {
+                        cryptoArrayList.get(position).setStatus(true);
+                        imageButton.setImageResource(R.drawable.ic_red_favorite_24);
+                    }
+                    else
+                    {
+                        imageButton.setImageResource(R.drawable.ic_shadow_favorite_24);
+                        cryptoArrayList.get(position).setStatus(false);
+
+                    }
+                }
+            });
+
         }
     }
 }

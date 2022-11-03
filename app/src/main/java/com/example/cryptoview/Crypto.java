@@ -12,11 +12,13 @@ public class Crypto {
     private String CName;
     private String CSymbol;
     private double CPrice;
+    private boolean status;
 
     public Crypto(String CName, String CSymbol, double CPrice) {
         this.CName = CName;
         this.CSymbol = CSymbol;
         this.CPrice = CPrice;
+        this.status = false;
     }
 
 
@@ -44,5 +46,12 @@ public class Crypto {
         this.CPrice = CPrice;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
 }
