@@ -4,37 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".Favorites">
+    android:background="@color/material_dynamic_neutral80"
+    tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="409dp"
-        android:layout_height="101dp"
-        android:layout_marginBottom="633dp"
-        android:text="FAVORITES"
-        android:textAlignment="center"
-        android:textColor="#ED9C24"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/FavoriteList" />
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="404dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="572dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <EditText
+        android:id="@+id/CryptoBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="auto"
+        android:hint="Search Cryptocurrencies"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp" />
+
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/FavoriteList"
-        android:layout_width="409dp"
-        android:layout_height="575dp"
-        android:layout_marginBottom="1dp"
+        android:id="@+id/FavRecycler"
+        android:layout_width="375dp"
+        android:layout_height="672dp"
+        android:layout_below="@+id/CryptoBar"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CryptoBar"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
+        tools:listitem="@layout/crypto_list" />
+
+    <ProgressBar
+        android:id="@+id/LoadingSymbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/news"
@@ -43,7 +49,9 @@
         android:insetBottom="0dp"
         android:text="News"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CryptoRecycler"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/fav"
@@ -52,7 +60,9 @@
         android:insetBottom="0dp"
         android:text="Favs"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/news" />
+        app:layout_constraintStart_toEndOf="@+id/news"
+        app:layout_constraintTop_toBottomOf="@+id/CryptoRecycler"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/home"
@@ -61,7 +71,9 @@
         android:insetBottom="0dp"
         android:text="Home"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fav" />
+        app:layout_constraintStart_toEndOf="@+id/fav"
+        app:layout_constraintTop_toBottomOf="@+id/CryptoRecycler"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/profile"
@@ -72,5 +84,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/home" />
+        app:layout_constraintStart_toEndOf="@+id/home"
+        app:layout_constraintTop_toBottomOf="@+id/CryptoRecycler"
+        app:layout_constraintVertical_bias="1.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+

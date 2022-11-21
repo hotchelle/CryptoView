@@ -17,9 +17,9 @@ public class FavDB extends SQLiteOpenHelper {
     private static int DB_VERSION = 1;
     private static String DATABASE_NAME = "FavoritesDB";
     private static String TABLE_NAME = "favoriteTable";
-    private static String C_Name="CName";
-    private static String C_Symbol = "CSymbol";
-    private static String C_Price = "CPrice"; // should be double(causes error)
+    public static String C_Name="CName";
+    public static String C_Symbol = "CSymbol";
+    public static String C_Price = "CPrice"; // should be double(causes error)
     public static String FAVORITE_STATUS = "fStatus";
     private ArrayList<Crypto> cryptoArrayList;
     private String user;
@@ -32,6 +32,11 @@ public class FavDB extends SQLiteOpenHelper {
     {
         super(context,DATABASE_NAME,null,DB_VERSION);
         this.cryptoArrayList = cryptoArrayList;
+    }
+
+    public FavDB(Context context)
+    {
+        super(context,DATABASE_NAME,null,DB_VERSION);
     }
 
     @Override

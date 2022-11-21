@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView cryptoList;
     private ProgressBar loadingSymbol;
     private ArrayList<Crypto> cryptoArrayList;
-    ArrayList<Crypto> favoriteCrypto;
     private CryptoListAdapter cryptoAdapter;
     Button homePage, favPage, newsPage, profilePage;
     @Override
@@ -52,13 +51,11 @@ public class MainActivity extends AppCompatActivity {
         cryptoList = findViewById(R.id.CryptoRecycler);
         loadingSymbol = findViewById(R.id.LoadingSymbol);
         cryptoArrayList = new ArrayList<>();
-        favoriteCrypto = new ArrayList<>();
         cryptoAdapter = new CryptoListAdapter(cryptoArrayList,this);
         cryptoList.setLayoutManager(new LinearLayoutManager(this));
         cryptoList.setAdapter(cryptoAdapter);
 
         getCryptoData();
-        //TODO: Call favorites data from firebase
 
         homePage = findViewById(R.id.home);
         favPage = findViewById(R.id.fav);
