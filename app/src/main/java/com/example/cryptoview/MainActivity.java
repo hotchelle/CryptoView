@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         loadingSymbol = findViewById(R.id.LoadingSymbol);
         cryptoArrayList = new ArrayList<>();
         favoriteCrypto = new ArrayList<>();
-        cryptoAdapter = new CryptoListAdapter(cryptoArrayList,this,favoriteCrypto);
+        cryptoAdapter = new CryptoListAdapter(cryptoArrayList,this);
         cryptoList.setLayoutManager(new LinearLayoutManager(this));
         cryptoList.setAdapter(cryptoAdapter);
 

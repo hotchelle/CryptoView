@@ -1,14 +1,18 @@
 package com.example.cryptoview;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.TextView;
 
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.DecimalFormat;
@@ -19,11 +23,11 @@ public class CryptoListAdapter extends RecyclerView.Adapter<CryptoListAdapter.Vi
     private static final DecimalFormat cdf = new DecimalFormat( "#.##");
     private static ArrayList<Crypto> cryptoArrayList;
     private final Context context;
-    private ArrayList<Crypto> favoriteCrypto;
+    private FavDB favDB;
 
-//This is a constructor that takes in an array list of all the crypto currencies
+    //This is a constructor that takes in an array list of all the crypto currencies
     // and a context to wrap around the program
-    public CryptoListAdapter(ArrayList<Crypto> cryptoArrayList, Context context, ArrayList<Crypto> favoriteCrypto) {
+    public CryptoListAdapter(ArrayList<Crypto> cryptoArrayList, Context context) {
         CryptoListAdapter.cryptoArrayList = cryptoArrayList;
         this.context = context;
     }
@@ -37,6 +41,12 @@ public class CryptoListAdapter extends RecyclerView.Adapter<CryptoListAdapter.Vi
     @NonNull
     @Override
     public CryptoListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        favDB = new FavDB(context,cryptoArrayList);
+        SharedPreferences prefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        boolean firstStart = prefs.getBoolean("firstStart", true);
+        if (firstStart) {
+            createTableOnFirstStart();
+        }
         View view = LayoutInflater.from(context).inflate(R.layout.crypto_list, parent, false);
         return new CryptoListAdapter.ViewHolder(view);
     }
@@ -62,37 +72,77 @@ public class CryptoListAdapter extends RecyclerView.Adapter<CryptoListAdapter.Vi
         private final TextView currencySymbol;
         private final TextView currencyName;
         private final TextView currencyPrice;
-        private final ImageButton imageButton;
+        private final Button favBtn;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             currencySymbol = itemView.findViewById(R.id.currSymbol);
             currencyName = itemView.findViewById(R.id.currName);
             currencyPrice = itemView.findViewById(R.id.currPrice);
-            imageButton = itemView.findViewById(R.id.fvrt_f2_item);
+            favBtn = itemView.findViewById(R.id.favBtn);
 
-            // For loop to check
-
-            imageButton.setOnClickListener(new View.OnClickListener() {
+            //add to fav btn
+            favBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
+                    Crypto crypto = cryptoArrayList.get(position);
 
-                    System.out.println(position);
-
-                    if(!cryptoArrayList.get(position).isStatus())
+                    if(!crypto.isStatus())
                     {
-                        cryptoArrayList.get(position).setStatus(true);
-                        imageButton.setImageResource(R.drawable.ic_red_favorite_24);
+                        crypto.setStatus(true);
+                        favDB.insertIntoTheDatabase(""+crypto.getCName(),""+crypto.getCSymbol(), crypto.getCPrice(), "1");
+                        favBtn.setBackgroundResource(R.drawable.ic_red_favorite_24);
                     }
                     else
                     {
-                        imageButton.setImageResource(R.drawable.ic_shadow_favorite_24);
-                        cryptoArrayList.get(position).setStatus(false);
-
+                        crypto.setStatus(false);
+                        favDB.remove_fav(crypto.getCName());
+                        favBtn.setBackgroundResource(R.drawable.ic_shadow_favorite_24);
                     }
                 }
             });
 
+
         }
     }
+
+    private void createTableOnFirstStart() {
+        favDB.insertEmpty();
+
+        SharedPreferences prefs = context.getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("firstStart", false);
+        editor.apply();
+    }
+
+    private void readCursorData(Crypto crypto, ViewHolder viewHolder) {
+        Cursor cursor = favDB.read_all_data(crypto.getCName());
+        SQLiteDatabase db = favDB.getReadableDatabase();
+        try {
+            while (cursor.moveToNext()) {
+                String item_fav_status = cursor.getString(cursor.getColumnIndex(FavDB.FAVORITE_STATUS));
+                if (item_fav_status == "0")
+                {
+                    crypto.setStatus(false);
+                }
+                else
+                {
+                    crypto.setStatus(true);
+                }
+
+                //check fav status
+                if (item_fav_status != null && item_fav_status.equals("1")) {
+                    viewHolder.favBtn.setBackgroundResource(R.drawable.ic_red_favorite_24);
+                } else if (item_fav_status != null && item_fav_status.equals("0")) {
+                    viewHolder.favBtn.setBackgroundResource(R.drawable.ic_shadow_favorite_24);
+                }
+            }
+        } finally {
+            if (cursor != null && cursor.isClosed())
+                cursor.close();
+            db.close();
+        }
+
+    }
+
 }

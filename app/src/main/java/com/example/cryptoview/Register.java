@@ -22,11 +22,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.checkerframework.checker.units.qual.A;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
     EditText mFullName, mEmail, mAge, mPassword, mConfirmPassword, mPhone;
+    ArrayList<Crypto> favoriteList;
     Button mRegisterBtn;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
@@ -109,8 +113,15 @@ public class Register extends AppCompatActivity {
                             userID = fAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fstore.collection("users").document(userID);
                             Map<String,Object> user = new HashMap<>();
+                            favoriteList = new ArrayList<>();
+
+                            favoriteList.add(new Crypto("BitCoin"));
+                            favoriteList.add(new Crypto("Ether"));
+                            favoriteList.add(new Crypto("Leo"));
+
                             user.put("name", name);
                             user.put("email", email);
+                            user.put("favorites",favoriteList);
                             user.put("phone", phone);
                             user.put("age", age);
 

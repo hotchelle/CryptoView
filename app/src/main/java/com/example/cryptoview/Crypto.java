@@ -20,6 +20,10 @@ public class Crypto {
         this.CPrice = CPrice;
         this.status = false;
     }
+    public Crypto(String cName)
+    {
+        this.CName = cName;
+    }
 
 
     public String getCName() {
