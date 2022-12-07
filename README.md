@@ -11,7 +11,7 @@ access to pertinent market news about various cryptocurrencies within the app. T
 4. Credits <br>
 
 # Project Demo
-demo in process
+![Demo](https://github.com/hotchelle/CryptoView/blob/main/app.gif)
 
 # How to install and run the project
 1. Download Android Studio ChipMunk Version 2
