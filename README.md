@@ -40,7 +40,7 @@ access to pertinent market news about various cryptocurrencies within the app. T
   
 # Credits
 - Abdulla Sakallah
-- Ahmad Natsheh
+- Ahamad Natsheh
 - Biruk Kebede
 - Ivan Cuarenta
 - Mahmoud Natsheh
